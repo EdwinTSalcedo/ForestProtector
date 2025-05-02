@@ -1,7 +1,7 @@
 <h1 align="center">IoT Sensor Node</h1>
 
 <p align="center">
-  <img src="../images/iot_node_image.jpg" width="35%" alt="IoT Sensor Node">
+  <img src="../images/iot_node_image.jpg" width="50%" alt="IoT Sensor Node">
 </p>
 
 This directory contains the firmware, hardware design, and assembly documentation for the IoT sensor nodes used in the ForestProtector wildfire monitoring system. These nodes collect environmental data (gas, temperature, humidity, rain) and send it wirelessly to the central gateway via LoRa communication.

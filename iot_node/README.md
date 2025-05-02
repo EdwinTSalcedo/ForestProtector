@@ -10,7 +10,7 @@ This directory contains the firmware, hardware design, and assembly documentatio
 
 ## Contents  
 [1. Components](#components) </br>
-[2. Wiring and schematic](#wiring) </br>
+[2. Schematic diagram](#wiring) </br>
 [3. Files included](#files) </br>
 [4. Physical design and assembly](#design) </br>
 [5. Library setup](#libraries) </br>
@@ -29,7 +29,7 @@ This directory contains the firmware, hardware design, and assembly documentatio
 - **5V power source** – LiPo battery or USB power bank
 
 <a id="wiring"></a>
-## 2. Visual schematic
+## 2. Schematic diagram
 
 <p align="center">
   <img src="../images/iot_node_schematic.png" width="60%">
@@ -59,27 +59,27 @@ The node enclosure was designed in SolidWorks and optimized for 3D printing in P
 - Material: PETG (preferred over PLA for outdoor durability)
 - Layer height: 0.2 mm
 - Infill: 20–30%
-- Orientation: All STL files in the [`3d_printing_files`](../3d_printing_files) folder are pre-oriented for printing. Some parts may require supports, but all were designed to minimize or eliminate their use.
+- Orientation: All STL files in the [`3d_printing_files`](3d_printing_files) folder are pre-oriented for printing. Some parts may require supports, but all were designed to minimize or eliminate their use.
 
-> The part [`iot_node_lower_canopy.stl`](../3d_printing_files/iot_node_lower_canopy.stl) contains internal cavities in its leg-like extensions designed to hold M3 nuts. To take advantage of this, a pause should be programmed during the print using your slicer software (e.g., Cura or PrusaSlicer). This feature allows for stronger and more secure assembly.
+> The part [`iot_node_lower_canopy.stl`](3d_printing_files/iot_node_lower_canopy.stl) contains internal cavities in its leg-like extensions designed to hold M3 nuts. To take advantage of this, a pause should be programmed during the print using your slicer software (e.g., Cura or PrusaSlicer). This feature allows for stronger and more secure assembly.
 
 **Assembly steps:**
 
-1. Print all parts available in the [`3d_printing_files`](../3d_printing_files) folder.
+1. Print all parts available in the [`3d_printing_files`](3d_printing_files) folder.
 2. Connect the **TTGO LoRa32** board to its power cable.
-3. Insert the board into the correct slot of the [`iot_node_power_and_boards_holder.stl`](../3d_printing_files/iot_node_power_and_boards_holder.stl) part. The second slot is reserved for a Raspberry Pi Pico-R3, considered for future extensions.
+3. Insert the board into the correct slot of the [`iot_node_power_and_boards_holder.stl`](3d_printing_files/iot_node_power_and_boards_holder.stl) part. The second slot is reserved for a Raspberry Pi Pico-R3, considered for future extensions.
 4. Place the power bank in the center of the same holder piece, with its USB ports facing downward for easier access.
-5. Slide the board holder into the base part [`iot_node_sensor_base.stl`](../3d_printing_files/iot_node_sensor_base.stl) and secure them using four 8mm M3 screws.
+5. Slide the board holder into the base part [`iot_node_sensor_base.stl`](3d_printing_files/iot_node_sensor_base.stl) and secure them using four 8mm M3 screws.
 6. Mount the **BME280** sensor on top of the sensor base, facing upward. Route its wires through the dedicated holes to reach the inner compartment where the microcontroller is located.
 7. Attach the LoRa antenna to `iot_node_sensor_base.stl` using its own screws and nuts. The antenna should point vertically upward.
-8. Place the **MQ2** sensor (with wires already connected) below and inside the [`iot_node_lower_canopy.stl`](../3d_printing_files/iot_node_lower_canopy.stl) part. Run the wires through the side slot designed into one of its vertical columns.
+8. Place the **MQ2** sensor (with wires already connected) below and inside the [`iot_node_lower_canopy.stl`](3d_printing_files/iot_node_lower_canopy.stl) part. Run the wires through the side slot designed into one of its vertical columns.
 9. Repeat the process with the **T1592 rain sensor**, routing its wires through the same slot.
-10. Place the [`iot_node_upper_canopy.stl`](../3d_printing_files/iot_node_upper_canopy.stl) over the lower canopy to protect the rain sensor. Secure it with zip ties.
+10. Place the [`iot_node_upper_canopy.stl`](3d_printing_files/iot_node_upper_canopy.stl) over the lower canopy to protect the rain sensor. Secure it with zip ties.
 11. Once all sensors are in place, join the following parts using two M3 screws (minimum 30 mm in length):
     - First, secure `iot_node_sensor_base.stl` to `iot_node_main_body.stl` (as if the latter were its lid). At this point, the BME280 sensor and the antenna should protrude through their respective openings.
     - Then pass the same screws through `iot_node_lower_canopy.stl`, locking the full structure together.
 12. Before final assembly, make sure that all cables are long enough to reach from the sensors to the board and that they pass properly through the designated cable channels.
-13. To attach the device to the PVC pipe, notches must be cut into the pipe. These details can be found in the assembly file [`iot_node.SLDASM`](../cad_files/iot_node.SLDASM). Once the pipe is prepared, the enclosure can be twisted onto it as if it were threaded.
+13. To attach the device to the PVC pipe, notches must be cut into the pipe. These details can be found in the assembly file [`iot_node.SLDASM`](cad_files/iot_node.SLDASM). Once the pipe is prepared, the enclosure can be twisted onto it as if it were threaded.
 14. (Optional) Apply silicone or waterproof sealant around exterior joints to improve resistance to rain or moisture.
 
 **Assembly reference:**

@@ -1,0 +1,182 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "IoT Data API",
+    "description": "API to manage and visualize IoT node data"
+  },
+  "host": "sadly-top-dove.ngrok-free.app",
+  "schemes": ["https"],
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Alerts",
+      "description": "Endpoints to handle alerts"
+    },
+    {
+      "name": "IoT Data",
+      "description": "Endpoints to handle IoT data"
+    },
+    {
+      "name": "WhatsApp",
+      "description": "Endpoints to handle WhatsApp QR code"
+    }
+  ],
+  "paths": {
+    "/alert": {
+      "post": {
+        "tags": ["Alerts"],
+        "summary": "Send alert messages",
+        "parameters": [
+          {
+            "name": "phone",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "message",
+            "in": "formData",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "gif",
+            "in": "formData",
+            "required": true,
+            "type": "file"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Message sent successfully"
+          },
+          "400": {
+            "description": "Error sending message"
+          }
+        }
+      }
+    },
+    "/node/{node}": {
+      "post": {
+        "tags": ["IoT Data"],
+        "summary": "Receive IoT data",
+        "parameters": [
+          {
+            "name": "node",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/IoTData"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "IoT data added successfully"
+          },
+          "400": {
+            "description": "Error adding IoT data"
+          }
+        }
+      },
+      "get": {
+        "tags": ["IoT Data"],
+        "summary": "Retrieve IoT data",
+        "parameters": [
+          {
+            "name": "node",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "startTime",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "example": "1281973420"
+          },
+          {
+            "name": "endTime",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "example": "1281973420"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON object with IoT data"
+          },
+          "400": {
+            "description": "Error retrieving IoT data"
+          }
+        }
+      }
+    },
+    "/node-count": {
+      "get": {
+        "tags": ["IoT Data"],
+        "summary": "Get the number of nodes registered",
+        "responses": {
+          "200": {
+            "description": "Number of nodes"
+          },
+          "400": {
+            "description": "Error retrieving nodes"
+          }
+        }
+      }
+    },
+    "/whatsapp-qr": {
+      "get": {
+        "tags": ["WhatsApp"],
+        "summary": "Render view and send image from WhatsApp QR",
+        "responses": {
+          "200": {
+            "description": "WhatsApp client is ready or QR code data"
+          },
+          "500": {
+            "description": "Error generating QR code or QR code data not available"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "IoTData": {
+      "type": "object",
+      "properties": {
+        "co2": {
+          "type": "integer",
+          "example": 400
+        },
+        "temperature": {
+          "type": "number",
+          "format": "float",
+          "example": 22.5
+        },
+        "pressure": {
+          "type": "number",
+          "format": "float",
+          "example": 1013.25
+        },
+        "smoke": {
+          "type": "boolean",
+          "example": false
+        },
+        "sound": {
+          "type": "boolean",
+          "example": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,6 @@
+- [ ] Add number of nodes endpoint
+- [ ] Views to render QR code
+- [ ] Add WhatsApp Web Js
+- [ ] Add send message to WhatsApp
+- [ ] Add .gif save on POST request
+- [ ] Add websocket when alert is triggered

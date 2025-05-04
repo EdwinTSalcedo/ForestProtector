@@ -6,8 +6,6 @@
 
 This directory contains the firmware, hardware design, and assembly documentation for the IoT sensor nodes used in the ForestProtector wildfire monitoring system. These nodes collect environmental data (gas, temperature, humidity, rain) and send it wirelessly to the central gateway via LoRa communication.
 
-<p align='right'><i> Status: Node module validated and field-tested </i></p> 
-
 ## Contents  
 [1. Components](#components) </br>
 [2. Schematic diagram](#wiring) </br>

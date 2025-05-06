@@ -95,10 +95,13 @@ We designed custom enclosures for the IoT nodes and gateway using SolidWorks and
 If you find *ForestProtector* useful in your project, please consider citing the following paper:
 
 ```
-@article{bonilla2025forestprotector,
-  title={ForestProtector: An IoT Architecture Integrating Machine Vision and Deep Reinforcement Learning for Efficient Wildfire Monitoring},
+@INPROCEEDINGS{bonilla2025,
   author={Bonilla-Ormachea, Kenneth and Cuizaga, Horacio and Salcedo, Edwin and Castro, Sebastian and Fernandez-Testa, Sergio and Mamani, Misael},
-  journal={arXiv preprint arXiv:2501.09926},
-  year={2025}
-}
+  booktitle={2025 11th International Conference on Automation, Robotics, and Applications (ICARA)}, 
+  title={ForestProtector: An IoT Architecture Integrating Machine Vision and Deep Reinforcement Learning for Efficient Wildfire Monitoring}, 
+  year={2025},
+  volume={},
+  number={},
+  pages={70-75},
+  doi={10.1109/ICARA64554.2025.10977677}}
 ```

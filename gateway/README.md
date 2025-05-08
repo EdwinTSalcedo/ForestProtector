@@ -10,8 +10,6 @@ The intelligent processing is handled by a **Jetson Nano**, which receives data 
 
 This system is designed to operate autonomously in forest environments, prioritizing high-risk areas based on the real-time sensor data collected by remote nodes.
 
-<p align='right'><i>Status: Gateway module validated and field-tested</i></p>
-
 ## Contents  
 [1. Components](#components) </br>
 [2. Schematic diagram](#wiring) </br>

@@ -25,12 +25,13 @@ This system is designed to operate autonomously in forest environments, prioriti
 
 - **LilyGo T3S3 V1.1** – ESP32-S3 microcontroller with integrated SX1262 LoRa transceiver  
 - **Jetson Nano** – Embedded computer with ARM Cortex-A57 CPU and Maxwell GPU, used for reinforcement learning-based decision making  
-- **Pi Camera Module (Rev 1.3)** – Connected to the Jetson Nano via CSI interface for thermal or visual monitoring  
-- **SG90 servo** – Servo motor for pan or tilt control of the camera
-- **LoRa antenna** – External 868 MHz/915 MHz antenna for long-range communication
--
-- **3D printed enclosure** – Designed in PETG for weather resistance (UV and moisture protection)
-- **Power supply** – Jetson Nano-compatible power source (e.g., 5V–4A via USB-C or 5.5 mm barrel connector)  
+- **Pi Camera Module (Rev 1.3)** – Camera connected to the Jetson Nano via CSI interface for thermal or visual monitoring  
+- **SG90 Servo** – Servo motor for pan or tilt control of the camera  
+- **LoRa Antenna** – External 868 MHz/915 MHz antenna for long-range communication  
+- **3D Printed Enclosure** – Enclosure designed in PETG for weather resistance (UV and moisture protection)  
+- **Power Supply** – Power source compatible with Jetson Nano (e.g., 5V–4A via USB-C or 5.5 mm barrel connector)  
+- **2x 5V Fans** – Used for active cooling of the Jetson Nano and airflow within the enclosure  
+- **20x32x7 mm Bearing** – Provides smooth rotation support for the camera platform
 
 <a id="wiring"></a>
 ## 2. Schematic diagram
@@ -82,5 +83,120 @@ The physical design of the gateway is essential to ensure proper operation under
 **Assembly reference:**
 
 <p align="center">
-  <img src="../images/gateway_assembly.jpg" width="50%">
+  <img src="../images/gateway_assembly.jpg" width="80%">
 </p>
+
+<a id="libraries"></a>
+## 5. Library Setup
+
+To compile the gateway firmware and run the scripts, you need the following:
+
+### Arduino IDE (for LilyGo T3S3)
+- **Board support**: Install "ESP32 by Espressif Systems" by adding the following URL in *Preferences*:  
+  `https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json`
+
+- **Required libraries**:
+  - `LoRa` by Sandeep Mistry
+
+- **Development environment configuration**:  
+  When using the **LilyGo T3S3** board, you must manually adjust the board settings in the Arduino IDE to ensure proper operation. Use the following recommended configuration:
+
+| Option                        | Value                                  |
+|-------------------------------|----------------------------------------|
+| Board                         | ESP32S3 Dev Module                     |
+| Port                          | Your board’s port                      |
+| USB CDC On Boot               | Enable                                 |
+| CPU Frequency                 | 240MHz (WiFi)                          |
+| Core Debug Level              | None                                   |
+| USB DFU On Boot               | Disable                                |
+| Erase All Flash Before Upload | Disable                                |
+| Events Run On                 | Core1                                  |
+| Flash Mode                    | QIO 80MHz                              |
+| Flash Size                    | 4MB (32Mb)                             |
+| Arduino Runs On               | Core1                                  |
+| USB Firmware MSC On Boot      | Disable                                |
+| Partition Scheme              | Huge APP (3MB No OTA / 1MB SPIFFS)     |
+| PSRAM                         | QSPI PSRAM                             |
+| Upload Mode                   | UART0 / Hardware CDC                   |
+| Upload Speed                  | 921600                                 |
+| USB Mode                      | CDC and JTAG                           |
+| Programmer                    | Esptool                                |
+
+Also, make sure to **uncomment the appropriate board in the `utilities.h` file** of your sketch according to the model you're using. Otherwise, compilation will fail.
+
+> For more details on configuring this board, refer to the official LilyGo documentation:  
+> [LilyGo LoRa Series GitHub Repository](https://github.com/Xinyuan-LilyGO/LilyGo-LoRa-Series)
+
+### (for Jeston Nano)
+*(to be completed)*
+
+<a id="firmware"></a>
+## 6. Firmware Behavior
+
+The gateway system consists of two main components:
+
+### LilyGo T3S3 (LoRa Gateway)
+This microcontroller acts as the central receiver for environmental monitoring data sent from remote sensor nodes. Its operation can be summarized as follows:
+
+1. **LoRa Module Initialization**  
+   In the `setup()`, the SPI pins for the LoRa module are manually defined, and the transceiver is initialized at 915 MHz. If the initialization fails, the system halts.
+
+2. **Data Reception**  
+   Inside the `loop()`, the device continuously listens for incoming LoRa packets using `LoRa.parsePacket()`. When a packet is received:
+   - The full message is read into a `String`.
+   - The `processReceivedData()` function is called to interpret its contents.
+
+3. **Received Data Processing**  
+   The expected message format is:  
+   `<NODE_ID>:<mq2>,<rain>,<temperature>,<humidity>`  
+   Example: `2:1234,0,55.3,48.1`  
+   Where:
+   - `NODE_ID` identifies the transmitting node (1, 2, or 3).
+   - `mq2` is the raw smoke sensor value (mapped to a 0–100 scale).
+   - `rain` is the raw rain sensor value.
+   - `temperature` and `humidity` are in °C and %RH respectively.
+
+   The function:
+   - Associates the data to the corresponding node (`node1`, `node2`, or `node3`).
+   - Applies binary thresholds: temperature > 50°C and humidity > 45% are set to 1; otherwise, 0.
+   - Logs the last update time for the node.
+
+4. **Periodic Display**  
+   Every 5 seconds, the `displayNodeData()` function prints the latest data for all nodes to the Serial Monitor. If a node has not updated its data in more than 10 seconds, it reports "No recent data received."
+
+### Jetson Nano (AI Agent and Decision Unit)
+*(to be completed)*
+
+> This architecture enables the gateway to function as an intelligent hub, receiving, interpreting, and routing data to the AI-based decision unit.
+
+<a id="considerations"></a>
+## 7. Field Deployment Considerations
+
+When deploying the gateway in real-world scenarios, take the following aspects into account:
+
+### Antenna Placement
+- Position the LoRa antenna in a high, unobstructed location with line-of-sight to the sensor nodes.
+- Avoid major obstacles (walls, dense trees, metallic structures) that may degrade the signal.
+- If needed, use external high-gain antennas to increase communication range.
+
+### Power Supply
+- Use a stable power source, ideally a **USB-C power bank** with reliable output.
+- Alternatively, consider a **solar panel + rechargeable battery** solution for long-term remote deployments.
+
+### Environmental Protection
+- The gateway must be housed in a weather-resistant enclosure:
+  - Waterproof (IP65 or higher).
+  - UV-resistant if exposed to direct sunlight.
+- Properly seal all joints and leave a secure path for the power cable without exposing the system to water ingress.
+
+### Cooling
+- Although the Jetson Nano includes fans, make sure they are functioning properly, especially in warm environments or during extended high-load operation.
+
+### Maintenance
+- Perform regular checks on:
+  - Servo alignment and movement.
+  - Cable and connector integrity.
+  - Camera focus and positioning.
+- Ensure that communication with sensor nodes remains stable over time.
+
+> This modular gateway design allows future expansion, such as multiple LoRa channels, cloud service integration, or additional modules for intelligent decision-making and alerting.

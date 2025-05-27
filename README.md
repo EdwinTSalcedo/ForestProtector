@@ -30,7 +30,7 @@ This repository contains supplementary material for the conference paper [*"Fore
 * [Graphical user interface (GUI)](#gui) </br>
 * [On-device deployment](#deployment) </br> -->
 
-[6. Citation](#citation) </br>
+[2. Citation](#citation) </br>
 <br>
 
 <a id="overview"></a> 
@@ -90,7 +90,7 @@ We designed custom enclosures for the IoT nodes and gateway using SolidWorks and
 
 
 <a id="citation"></a>
-## 6. Citation
+## 2. Citation
 
 If you find *ForestProtector* useful in your project, please consider citing the following paper:
 

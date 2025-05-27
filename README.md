@@ -16,7 +16,7 @@ This repository contains supplementary material for the conference paper [*"Fore
 * [IoT architecture](#iotarchitecture) </br>
 * [Hardware prototype](#hardwareprototype) </br>
 
-[2. Computer vision system](#cvsystem) </br>
+<!-- [2. Computer vision system](#cvsystem) </br>
 * [Data collection](#datacollection) </br>
 * [Computer vision pipeline](#cvpipeline) </br>
 * [3DCNN](#3dcnn) </br>
@@ -28,7 +28,7 @@ This repository contains supplementary material for the conference paper [*"Fore
 [5. Getting started](#gettingstarted) </br>
 * [Initial inference samples](#initialinference) </br>
 * [Graphical user interface (GUI)](#gui) </br>
-* [On-device deployment](#deployment) </br>
+* [On-device deployment](#deployment) </br> -->
 
 [6. Citation](#citation) </br>
 <br>
@@ -58,7 +58,7 @@ We designed custom enclosures for the IoT nodes and gateway using SolidWorks and
 |---|---|
 |<a href="https://github.com/EdwinTSalcedo/ForestProtector/tree/main/iot_node"><img src="images/iotdevice.jpg" width="250px"/></a> | <a href="https://github.com/EdwinTSalcedo/ForestProtector/tree/main/gateway"><img src="images/gateway.jpg"  width="250px"/></a> |  
 
-<a id="cvsystem"></a>
+<!-- <a id="cvsystem"></a>
 ## 2. Computer vision system
 
 <a id="datacollection"></a> 
@@ -86,7 +86,7 @@ We designed custom enclosures for the IoT nodes and gateway using SolidWorks and
 ### Graphical User Interface (GUI)
 
 <a id="deployment"></a> 
-### On-device deployment
+### On-device deployment -->
 
 
 <a id="citation"></a>

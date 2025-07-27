@@ -1,0 +1,6 @@
+tensorflow==2.13.0
+numpy==1.24.3
+opencv-python==4.8.0.76
+matplotlib==3.7.1
+gym==0.26.2
+Jetson.GPIO==2.1.1

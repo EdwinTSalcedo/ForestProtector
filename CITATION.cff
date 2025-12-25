@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+title: ForestProtector
+message: "If you use this repository, please cite the associated paper."
+authors:
+  - family-names: Bonilla-Ormachea
+    given-names: Kenneth
+  - family-names: Cuizaga
+    given-names: Horacio
+  - family-names: Salcedo
+    given-names: Edwin
+  - family-names: Castro
+    given-names: Sebastian
+  - family-names: Fernandez-Testa
+    given-names: Sergio
+  - family-names: Mamani
+    given-names: Misael
+
+preferred-citation:
+  type: conference-paper
+  title: "ForestProtector: An IoT Architecture Integrating Machine Vision and Deep Reinforcement Learning for Efficient Wildfire Monitoring"
+  authors:
+    - family-names: Bonilla-Ormachea
+      given-names: Kenneth
+    - family-names: Cuizaga
+      given-names: Horacio
+    - family-names: Salcedo
+      given-names: Edwin
+    - family-names: Castro
+      given-names: Sebastian
+    - family-names: Fernandez-Testa
+      given-names: Sergio
+    - family-names: Mamani
+      given-names: Misael
+  year: 2025
+  journal: "2025 11th International Conference on Automation, Robotics, and Applications (ICARA)"
+  doi: 10.1109/ICARA64554.2025.10977677

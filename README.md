@@ -16,7 +16,7 @@ This repository contains supplementary material for the paper [*"ForestProtector
 
 [2. Computer vision system](#cvsystem) </br>
 * [Datasets](#datasets) </br>
-* [Detection Metrics](#metrics) </br>
+* [Detection metrics](#metrics) </br>
 <!-- 
 [3. Deep reinforcement learning agent](#drlagent) </br>
 

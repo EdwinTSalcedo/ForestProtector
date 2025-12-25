@@ -26,7 +26,7 @@ def main():
     and printing the suggested sector.
     """
     try:
-        model = tf.keras.models.load_model('camera_ctrl.h5', compile=False)
+        model = tf.keras.models.load_model('../model/camera_ctrl.h5', compile=False)
         print("Model loaded successfully.\n")
     except Exception as e:
         print(f"Failed to load model: {e}")

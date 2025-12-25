@@ -2,11 +2,19 @@
 
 This repository contains supplementary material for the paper [*"ForestProtector: An IoT Architecture Integrating Machine Vision and Deep Reinforcement Learning for Efficient Wildfire Monitoring"*](https://ieeexplore.ieee.org/document/10977677) (ICARA 2025). **Authors:** [Kenneth Bonilla-Ormachea](https://www.linkedin.com/in/kenneth-bonilla-ormachea-58b7a9240/), [Horacio Cuizaga](https://www.linkedin.com/in/horacuizr/), [Edwin Salcedo](https://www.linkedin.com/in/edwinsalcedo), [Sebastian Castro](https://www.linkedin.com/in/sebastian-castro-3969641a6), [Sergio Fernandez-Testa](https://www.linkedin.com/in/sergio5919/), and [Misael Mamani](https://www.linkedin.com/in/misaelmq680/).  
 
-[[Project page]](https://edwinsalcedo.com/publication/forest-protector) [[arXiv]](https://arxiv.org/abs/2501.09926)
+[[Project Page]](https://edwinsalcedo.com/publication/forest-protector) 
+[[arXiv]](https://arxiv.org/abs/2501.09926)
+[[Demo Video]](https://youtu.be/jGAHsTo3gg0)
 
 <p align="center">
 <img src="images/insitu-validation1-compressed.jpg" width="80%">
-</p>
+</p>  
+
+## TL;DR
+- **What it is:** A low-cost wildfire monitoring system combining IoT sensor nodes, an edge gateway, and computer vision.
+- **What’s new:** A deep reinforcement learning agent actively controls a 360° camera to prioritize high-risk areas using real-time sensor data.
+- **What you can do:** Deploy a low-cost wildfire monitoring prototype, test intelligent camera control on the edge, or adapt the architecture for rural and remote monitoring.
+
 
 ## Contents
 [1. Overview](#overview) </br>
@@ -21,13 +29,15 @@ This repository contains supplementary material for the paper [*"ForestProtector
 [3. Deep reinforcement learning agent](#drlagent) </br>
 
 [4. Validation](#validation) </br>
+-->
 
-[5. Getting started](#gettingstarted) </br>
-* [Initial inference samples](#initialinference) </br>
-* [Graphical user interface (GUI)](#gui) </br>
-* [On-device deployment](#deployment) </br>  -->
+[3. Getting started](#gettingstarted) </br>
+<!-- * [Initial inference samples](#initialinference) </br> -->
 
-[3. Citation](#citation) </br>
+<!-- * [Graphical user interface (GUI)](#gui) </br> -->
+<!-- * [On-device deployment](#deployment) </br>   -->
+
+[4. Citation](#citation) </br>
 <br>
 
 <a id="overview"></a> 
@@ -92,11 +102,37 @@ Our approach achieved accuracies of 92.5% and 88% for daytime and nighttime fire
 ## 3. Deep reinforcement learning agent
 
 <a id="validation"></a> 
-## 4. Validation 
+## 4. Validation -->
 
 <a id="gettingstarted"></a>
-## 5. Getting started
+## 3. Getting started
 
+This quickstart runs **reproducible, minimal demos** of the daytime smoke detector and nighttime fire detector using deterministic sample videos generated locally (no downloads). The demo scripts create four sample videos in `cv/samples` if they do not exist.
+
+### 1. Create and activate the Conda environment
+```bash
+conda env create -f environment.yml
+conda activate forestprotector
+```
+
+### 2. Run the daytime smoke detection demo
+```bash
+python cv/daytime/scripts/run_daytime_demo.py
+```
+
+### 3. Run the nighttime fire detection demo
+```bash
+python cv/nighttime/scripts/run_nighttime_demo.py
+```
+
+**What to expect**
+- Daytime demo prints smoke/no-smoke decisions for two daytime videos.
+- Nighttime demo prints fire/no-fire decisions for two nighttime videos.
+- A lightweight demo model is saved to `cv/daytime/models/demo_smoke_model.keras` for repeatable smoke inference.
+
+To run the full research model, replace the demo model with your trained Keras model and keep the same input preprocessing used in `cv/daytime/scripts/smoke_vision_inference.py`.
+
+<!-- 
 <a id="initialinference"></a> 
 ### Initial inference samples
 
@@ -108,7 +144,7 @@ Our approach achieved accuracies of 92.5% and 88% for daytime and nighttime fire
 
 
 <a id="citation"></a>
-## 3. Citation
+## 4. Citation
 
 If you find *ForestProtector* useful in your project, please consider citing the following paper:
 

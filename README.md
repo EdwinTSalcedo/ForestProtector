@@ -107,7 +107,7 @@ Our approach achieved accuracies of 92.5% and 88% for daytime and nighttime fire
 <a id="gettingstarted"></a>
 ## 3. Getting started
 
-This quickstart runs **reproducible, minimal demos** of the daytime smoke detector and nighttime fire detector using deterministic sample videos generated locally (no downloads). The demo scripts create four sample videos in `cv/samples` if they do not exist.
+This quickstart runs **reproducible, minimal demos** of the daytime smoke detector and nighttime fire detector using the sample videos in `cv/samples`.
 
 ### 1. Create and activate the Conda environment
 ```bash
@@ -115,19 +115,14 @@ conda env create -f environment.yml
 conda activate forestprotector
 ```
 
-### 2. Run the daytime smoke detection demo
+### 2. Run the unified day/night demo
 ```bash
-python cv/daytime/scripts/run_daytime_demo.py
-```
-
-### 3. Run the nighttime fire detection demo
-```bash
-python cv/nighttime/scripts/run_nighttime_demo.py
+python cv/run_demo.py
 ```
 
 **What to expect**
-- Daytime demo prints smoke/no-smoke decisions for two daytime videos.
-- Nighttime demo prints fire/no-fire decisions for two nighttime videos.
+- Demo auto-detects day vs. night by mean illumination and routes each video to the correct detector.
+- Outputs smoke/no-smoke decisions for daytime videos and fire/no-fire decisions for nighttime videos.
 - A lightweight demo model is saved to `cv/daytime/models/demo_smoke_model.keras` for repeatable smoke inference.
 
 To run the full research model, replace the demo model with your trained Keras model and keep the same input preprocessing used in `cv/daytime/scripts/smoke_vision_inference.py`.

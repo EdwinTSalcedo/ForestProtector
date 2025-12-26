@@ -32,7 +32,9 @@ This repository contains supplementary material for the paper [*"ForestProtector
 
 [5. Validation](#validation) </br>
 
-[6. Citation](#citation) </br>
+[6. Project structure](#projectstructure) </br>
+
+[7. Citation](#citation) </br>
 <br>
 
 <a id="overview"></a> 
@@ -94,10 +96,10 @@ The 24/7 fire monitoring system comprises two modalities. During the day, it pri
 <a id="datasets"></a>
 ### Datasets
 
-The computer vision system required the collection of two dastasets ([available here](https://drive.google.com/drive/folders/16Fxw01cgJtipfyKjr5r_unSuSZd61Ahs?usp=sharing)): 
+The computer vision system required the collection of two datasets ([available here](https://drive.google.com/drive/folders/16Fxw01cgJtipfyKjr5r_unSuSZd61Ahs?usp=sharing)): 
 
 - **Nighttime Fire Detection (NFD) Dataset**  &rarr; Consists of 100 forest videos captured during nighttime, with and without fire (50 per category). 
-- **Smoke Detection (SD) Dataset**  &rarr; To train the 3DCNN, we collected 1,398 forest videos using web scrapping, generative AI, and video editing tools. The following table summarises this dataset. Note that we later augmented this dataset to obtain 2,000 videos per category.
+- **Smoke Detection (SD) Dataset**  &rarr; To train the 3DCNN, we collected 1,398 forest videos using web scraping, generative AI, and video editing tools. The following table summarises this dataset. Note that we later augmented this dataset to obtain 2,000 videos per category.
 
 | Class          | Scrapped Videos | AI-generated Videos | Videos Generated with After Effects | Total | Aug.  |
 |----------------|------------------|----------------------|--------------------------------------|--------|--------|
@@ -142,8 +144,38 @@ The GUI provides a real-time dashboard for incoming IoT data, alert notification
 Additional field tests were conducted in the rural area of Sorata, La Paz, Bolivia ([Google Maps Location](https://maps.google.com/?q=-15.730436,-68.680162)), to further validate the system under real-world conditions. These tests corroborated the system’s ability to prioritize high-risk areas, verify wildfire indicators, and issue timely alerts in outdoor environments. A final demonstration video of the deployed system is available at:  
 https://youtu.be/jGAHsTo3gg0
 
+<a id="projectstructure"></a> 
+## 6. Project structure
+
+```text
+.
+├── cv/                # Day/night computer vision scripts and notebooks.
+│   ├── daytime/        # Daytime smoke detection notebooks and scripts.
+│   ├── nighttime/      # Nighttime fire detection scripts and data.
+│   └── samples/        # Sample videos used by the unified demo.
+├── drl/               # Deep reinforcement learning agent code and models.
+│   ├── model/          # Trained DRL policy.
+│   ├── scripts/        # DRL inference demo script.
+│   └── notebooks/      # Training and analysis notebooks.
+├── gateway/           # Gateway firmware and mechanical design files.
+│   ├── 3d_printing_files/ # Printable STL/3MF parts.
+│   └── cad_files/      # CAD source files.
+├── iot_node/          # IoT node firmware and enclosure CAD files.
+│   ├── 3d_printing_files/ # Printable STL/3MF parts.
+│   └── cad_files/      # CAD source files.
+├── webapp/            # Web dashboard, backend API, and microcontroller code.
+│   ├── backend/        # Node.js API, WebSockets, and WhatsApp alerts.
+│   ├── frontend/       # React/Vite dashboard.
+│   └── microcontrollers/ # Jetson/NodeMCU/Pi Pico integration code.
+├── images/            # Figures used in documentation.
+├── deployment/        # On-device deployment utilities (Jetson).
+├── README.md          # Main project documentation.
+├── environment.yml    # Conda environment for demos.
+└── LICENSE.md         # License information.
+```
+
 <a id="citation"></a>
-## 6. Citation
+## 7. Citation
 
 If you find *ForestProtector* useful in your project, please consider citing the following paper:
 

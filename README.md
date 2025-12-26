@@ -28,15 +28,11 @@ This repository contains supplementary material for the paper [*"ForestProtector
 
 [3. Deep reinforcement learning agent](#drlagent) </br>
 
-[4. Validation](#validation) </br>
+[4. Graphical user interface (GUI)](#gui) </br>
 
-<!-- [5. Getting started](#gettingstarted) </br> -->
-<!-- * [Initial inference samples](#initialinference) </br> -->
+[5. Validation](#validation) </br>
 
-<!-- * [Graphical user interface (GUI)](#gui) </br> -->
-<!-- * [On-device deployment](#deployment) </br>   -->
-
-[5. Citation](#citation) </br>
+[6. Citation](#citation) </br>
 <br>
 
 <a id="overview"></a> 
@@ -132,25 +128,23 @@ This script loads the trained model from `drl/model/camera_ctrl.h5` and prompts 
 (forestprotector) python drl/scripts/DRL.py
 ```
 
+<a id="gui"></a> 
+## 4. Graphical User Interface (GUI)
+
+The GUI provides a real-time dashboard for incoming IoT data, alert notifications, and system status. It consists of a Node.js backend (API + WebSockets + WhatsApp alerts) and a React/Vite frontend for live charts and filters. For setup and run instructions, see [webapp/README.md](webapp/README.md).
+
+<p align="center">
+<img src="images/frontend.png" width="80%">
+</p>
+
 <a id="validation"></a> 
-## 4. Validation
+## 5. Validation
 
 Additional field tests were conducted in the rural area of Sorata, La Paz, Bolivia ([Google Maps Location](https://maps.google.com/?q=-15.730436,-68.680162)), to further validate the system under real-world conditions. These tests corroborated the system’s ability to prioritize high-risk areas, verify wildfire indicators, and issue timely alerts in outdoor environments. A final demonstration video of the deployed system is available at:  
 https://youtu.be/jGAHsTo3gg0
 
-<!-- 
-<a id="initialinference"></a> 
-### Initial inference samples
-
-<a id="gui"></a> 
-### Graphical User Interface (GUI)
-
-<a id="deployment"></a> 
-### On-device deployment -->
-
-
 <a id="citation"></a>
-## 5. Citation
+## 6. Citation
 
 If you find *ForestProtector* useful in your project, please consider citing the following paper:
 

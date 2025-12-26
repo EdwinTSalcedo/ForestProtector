@@ -21,12 +21,12 @@ This repository contains supplementary material for the paper [*"ForestProtector
 * [IoT architecture](#iotarchitecture) </br>
 * [Hardware prototype](#hardwareprototype) </br>
 
-[2. Computer vision system](#cvsystem) </br>
+[2. Deep reinforcement learning agent](#drlagent) </br>
+
+[3. Computer vision system](#cvsystem) </br>
 * [Datasets](#datasets) </br>
 * [Detection metrics](#metrics) </br>
-* [Getting started](#gettingstarted) </br>
-
-[3. Deep reinforcement learning agent](#drlagent) </br>
+* [Demo](#demo) </br>
 
 [4. Graphical user interface (GUI)](#gui) </br>
 
@@ -60,8 +60,30 @@ We designed custom enclosures for the IoT nodes and gateway using SolidWorks and
 |---|---|
 |<a href="https://github.com/EdwinTSalcedo/ForestProtector/tree/main/iot_node"><img src="images/iotdevice.jpg" width="250px"/></a> | <a href="https://github.com/EdwinTSalcedo/ForestProtector/tree/main/gateway"><img src="images/gateway.jpg"  width="250px"/></a> |  
 
+<a id="drlagent"></a>
+## 2. Deep reinforcement learning agent
+
+The DRL agent, embedded within the gateway, learns a policy that selects which camera sector to observe next based on real-time IoT sensor signals. It uses a nine-value state vector (temperature, humidity, and smoke levels for three sectors) and outputs a ranked preference, allowing the gateway camera to focus on the region with the highest estimated risk.
+
+### Getting started
+
+This quickstart runs a **reproducible, minimal demo** of the agent. The full implementation is available in `drl/notebooks`.
+
+#### 1. Create and activate the Conda environment
+```bash
+conda env create -f environment.yml
+conda activate forestprotector
+```
+
+#### 2. Run the DRL policy demo (interactive)
+This script loads the trained model from `drl/model/camera_ctrl.h5` and prompts you for sensor readings.
+
+```bash
+(forestprotector) python drl/scripts/DRL.py
+```
+
 <a id="cvsystem"></a>
-## 2. Computer vision system
+## 3. Computer vision system
 
 The 24/7 fire monitoring system comprises two modalities. During the day, it prioritizes smoke detection over fire detection, as smoke is a more visible indicator of wildfires from long distances. To achieve this, we implemented a 3D-CNN trained on a combination of real and synthetic videos of smoke plumes and wildfires captured at various distances. At night, the system prioritizes the detection of bright regions using techniques such as color thresholding, background subtraction, and others to identify fires. The entire computer vision pipeline is depicted below: 
 
@@ -92,41 +114,18 @@ Our approach achieved accuracies of 92.5% and 88% for daytime and nighttime fire
 |---|---|
 |<img src="images/smoke_detection_matrix.png" width="250px"/> | <img src="images/fire_detection_matrix.png"  width="250px"/> |  
 
-<a id="gettingstarted"></a>
-### Getting started
+<a id="demo"></a>
+### Demo
 
-This quickstart runs **reproducible, minimal demos** of the daytime smoke detector and nighttime fire detector using the sample videos in `cv/samples`.
+Once inside the `forestprotector` environment, execute the following command to run the demo:
 
-#### 1. Create and activate the Conda environment
-```bash
-conda env create -f environment.yml
-conda activate forestprotector
-```
-
-#### 2. Run the unified day/night demo
 ```bash
 (forestprotector) python cv/run_demo.py
 ```
 
-**What to expect**
-- Demo auto-detects day vs. night by mean illumination and routes each video to the correct detector.
-- Outputs smoke/no-smoke decisions for daytime videos and fire/no-fire decisions for nighttime videos.
-- If `cv/daytime/model/smoke.keras` exists, it is used for smoke inference; otherwise a lightweight demo model is saved to `cv/daytime/models/demo_smoke_model.keras`.
-
-To run the full research model, replace the demo model with your trained Keras model and keep the same input preprocessing used in `cv/daytime/scripts/smoke_vision_inference.py`.
-
-
-<a id="drlagent"></a>
-## 3. Deep reinforcement learning agent
-
-The DRL agent learns a policy that selects which camera sector to observe next based on real-time IoT sensor signals. It uses a 9-value state vector (temperature, humidity, and smoke level for three sectors) and outputs a ranked preference, allowing the gateway camera to focus on the most likely risk region.
-
-### Run the DRL policy demo (interactive)
-This script loads the trained model from `drl/model/camera_ctrl.h5` and prompts you for sensor readings.
-
-```bash
-(forestprotector) python drl/scripts/DRL.py
-```
+This script runs a **reproducible, minimal demo** of the daytime smoke detector and nighttime fire detector using the sample videos in `cv/samples`.  
+The demo automatically distinguishes between day and night based on mean illumination and routes each video to the appropriate detector.  
+It outputs smoke/no-smoke decisions for daytime videos and fire/no-fire decisions for nighttime videos. The model `cv/daytime/model/smoke.keras` is used for smoke inference.
 
 <a id="gui"></a> 
 ## 4. Graphical User Interface (GUI)

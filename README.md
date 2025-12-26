@@ -3,7 +3,7 @@
 This repository contains supplementary material for the paper [*"ForestProtector: An IoT Architecture Integrating Machine Vision and Deep Reinforcement Learning for Efficient Wildfire Monitoring"*](https://ieeexplore.ieee.org/document/10977677) (ICARA 2025). **Authors:** [Kenneth Bonilla-Ormachea](https://www.linkedin.com/in/kenneth-bonilla-ormachea-58b7a9240/), [Horacio Cuizaga](https://www.linkedin.com/in/horacuizr/), [Edwin Salcedo](https://www.linkedin.com/in/edwinsalcedo), [Sebastian Castro](https://www.linkedin.com/in/sebastian-castro-3969641a6), [Sergio Fernandez-Testa](https://www.linkedin.com/in/sergio5919/), and [Misael Mamani](https://www.linkedin.com/in/misaelmq680/).  
 
 [[Project Page]](https://edwinsalcedo.com/publication/forest-protector) 
-[[arXiv]](https://arxiv.org/abs/2501.09926)
+[[Preprint]](https://arxiv.org/abs/2501.09926)
 [[Demo Video]](https://youtu.be/jGAHsTo3gg0)
 
 <p align="center">
@@ -11,10 +11,9 @@ This repository contains supplementary material for the paper [*"ForestProtector
 </p>  
 
 ## TL;DR
-- **What it is:** A low-cost wildfire monitoring system combining IoT sensor nodes, an edge gateway, and computer vision.
-- **What’s new:** A deep reinforcement learning agent actively controls a 360° camera to prioritize high-risk areas using real-time sensor data.
-- **What you can do:** Deploy a low-cost wildfire monitoring prototype, test intelligent camera control on the edge, or adapt the architecture for rural and remote monitoring.
-
+- **Problem:** Early wildfire detection over large forest areas is critical in wildfire-prone regions. However, existing solutions are often expensive or prone to false positives.
+- **Solution:** A low-cost wildfire detection system based on distributed IoT sensor nodes and a central edge gateway with computer vision monitoring a 360° field of view.
+- **Key contribution:** A deep reinforcement learning agent dynamically controls the camera orientation based on real-time sensor data (smoke, temperature, humidity) and verifies smoke presence through a 3DCNN-based video recognizer, reducing false positives.
 
 ## Contents
 [1. Overview](#overview) </br>
@@ -110,13 +109,13 @@ conda activate forestprotector
 
 #### 2. Run the unified day/night demo
 ```bash
-python cv/run_demo.py
+(forestprotector) python cv/run_demo.py
 ```
 
 **What to expect**
 - Demo auto-detects day vs. night by mean illumination and routes each video to the correct detector.
 - Outputs smoke/no-smoke decisions for daytime videos and fire/no-fire decisions for nighttime videos.
-- A lightweight demo model is saved to `cv/daytime/models/demo_smoke_model.keras` for repeatable smoke inference.
+- If `cv/daytime/model/smoke.keras` exists, it is used for smoke inference; otherwise a lightweight demo model is saved to `cv/daytime/models/demo_smoke_model.keras`.
 
 To run the full research model, replace the demo model with your trained Keras model and keep the same input preprocessing used in `cv/daytime/scripts/smoke_vision_inference.py`.
 
@@ -130,7 +129,7 @@ The DRL agent learns a policy that selects which camera sector to observe next b
 This script loads the trained model from `drl/model/camera_ctrl.h5` and prompts you for sensor readings.
 
 ```bash
-python drl/scripts/DRL.py
+(forestprotector) python drl/scripts/DRL.py
 ```
 
 <a id="validation"></a> 

@@ -99,9 +99,13 @@ def run_demo(illumination_threshold: float = 87.0) -> None:
         print(f"No sample videos found in {samples_root}.")
         print("Add videos to cv/samples and rerun.")
         return
-    model_path = ROOT / "cv" / "daytime" / "models" / "demo_smoke_model.keras"
+    real_model_path = ROOT / "cv" / "daytime" / "model" / "smoke.keras"
+    demo_model_path = ROOT / "cv" / "daytime" / "models" / "demo_smoke_model.keras"
     input_shape = (30, 240, 240, 1)
-    model = load_or_create_demo_model(model_path, input_shape)
+    if real_model_path.exists():
+        model = tf.keras.models.load_model(real_model_path)
+    else:
+        model = load_or_create_demo_model(demo_model_path, input_shape)
 
     for video_path in samples:
         mean_luma = compute_mean_illumination(video_path)

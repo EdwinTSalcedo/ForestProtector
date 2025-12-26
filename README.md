@@ -149,29 +149,29 @@ https://youtu.be/jGAHsTo3gg0
 
 ```text
 .
-├── cv/                # Day/night computer vision scripts and notebooks.
-│   ├── daytime/        # Daytime smoke detection notebooks and scripts.
-│   ├── nighttime/      # Nighttime fire detection scripts and data.
-│   └── samples/        # Sample videos used by the unified demo.
-├── drl/               # Deep reinforcement learning agent code and models.
-│   ├── model/          # Trained DRL policy.
-│   ├── scripts/        # DRL inference demo script.
-│   └── notebooks/      # Training and analysis notebooks.
-├── gateway/           # Gateway firmware and mechanical design files.
+├── cv/                  # Day/night computer vision scripts and notebooks.
+│   ├── daytime/         # Daytime smoke detection notebooks and scripts.
+│   ├── nighttime/       # Nighttime fire detection scripts and data.
+│   └── samples/         # Sample videos used by the unified demo.
+├── drl/                 # Deep reinforcement learning agent code and models.
+│   ├── model/           # Trained DRL policy.
+│   ├── scripts/         # DRL inference demo script.
+│   └── notebooks/       # Training and analysis notebooks.
+├── gateway/             # Gateway firmware and mechanical design files.
 │   ├── 3d_printing_files/ # Printable STL/3MF parts.
-│   └── cad_files/      # CAD source files.
-├── iot_node/          # IoT node firmware and enclosure CAD files.
+│   └── cad_files/       # CAD source files.
+├── iot_node/            # IoT node firmware and enclosure CAD files.
 │   ├── 3d_printing_files/ # Printable STL/3MF parts.
-│   └── cad_files/      # CAD source files.
-├── webapp/            # Web dashboard, backend API, and microcontroller code.
-│   ├── backend/        # Node.js API, WebSockets, and WhatsApp alerts.
-│   ├── frontend/       # React/Vite dashboard.
+│   └── cad_files/       # CAD source files.
+├── webapp/              # Web dashboard, backend API, and microcontroller code.
+│   ├── backend/         # Node.js API, WebSockets, and WhatsApp alerts.
+│   ├── frontend/        # React/Vite dashboard.
 │   └── microcontrollers/ # Jetson/NodeMCU/Pi Pico integration code.
-├── images/            # Figures used in documentation.
-├── deployment/        # On-device deployment utilities (Jetson).
-├── README.md          # Main project documentation.
-├── environment.yml    # Conda environment for demos.
-└── LICENSE.md         # License information.
+├── images/              # Figures used in documentation.
+├── deployment/          # On-device deployment utilities (Jetson).
+├── README.md            # Main project documentation.
+├── environment.yml      # Conda environment for demos.
+└── LICENSE.md           # License information.
 ```
 
 <a id="citation"></a>
